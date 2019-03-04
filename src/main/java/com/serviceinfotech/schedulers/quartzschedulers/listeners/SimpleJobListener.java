@@ -3,11 +3,10 @@ package com.serviceinfotech.schedulers.quartzschedulers.listeners;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
 import org.quartz.JobListener;
-import org.quartz.listeners.JobListenerSupport;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
-
+@Component
 public class SimpleJobListener implements JobListener{
 
 
@@ -15,8 +14,8 @@ public class SimpleJobListener implements JobListener{
             .getLogger(SimpleJobListener.class);
     private String name;
 
-    public SimpleJobListener(String name) {
-        this.name = name;
+    public SimpleJobListener() {
+        this.name =  "globalJob";
     }
 
     @Override
