@@ -62,7 +62,7 @@ public class ApplicationContextConfig {
     public SchedulerFactoryBean scheduler(Trigger trigger, JobDetail job) {
         SchedulerFactoryBean schedulerFactory = new SchedulerFactoryBean();
         schedulerFactory.setConfigLocation(new ClassPathResource("quartz.properties"));
-//        schedulerFactory.setJobFactory(springBeanJobFactory());
+        schedulerFactory.setJobFactory(springBeanJobFactory());
         schedulerFactory.setJobDetails(job);
         schedulerFactory.setApplicationContextSchedulerContextKey("applicationContext");
         schedulerFactory.setGlobalJobListeners(jobsListener);
