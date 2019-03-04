@@ -3,7 +3,6 @@ package com.serviceinfotech.schedulers.quartzschedulers.config;
 
 import com.serviceinfotech.schedulers.quartzschedulers.job.SimpleJob;
 import com.serviceinfotech.schedulers.quartzschedulers.listeners.SimpleJobListener;
-import org.omg.PortableInterceptor.ServerRequestInfo;
 import org.quartz.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,9 +14,6 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.scheduling.quartz.JobDetailFactoryBean;
 import org.springframework.scheduling.quartz.SchedulerFactoryBean;
 import org.springframework.scheduling.quartz.SpringBeanJobFactory;
-
-import javax.annotation.PostConstruct;
-import java.util.HashMap;
 
 @Configuration
 public class ApplicationContextConfig {
@@ -31,11 +27,6 @@ public class ApplicationContextConfig {
     private SimpleJobListener jobsListener;
 
 
-
-    @PostConstruct
-    public void init() {
-        logger.info("Hello world from Quartz...");
-    }
 
     @Bean
     public JobDetailFactoryBean jobDetail() {
@@ -75,6 +66,7 @@ public class ApplicationContextConfig {
         schedulerFactory.setJobDetails(job);
         schedulerFactory.setGlobalJobListeners(jobsListener);
         schedulerFactory.setTriggers(trigger);
+        schedulerFactory.setStartupDelay(1);
         logger.debug("Starting Scheduler threads");
         schedulerFactory.start();
         return schedulerFactory;
