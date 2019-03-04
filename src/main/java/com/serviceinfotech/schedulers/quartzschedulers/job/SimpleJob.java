@@ -13,8 +13,9 @@ public class SimpleJob implements Job {
     @Autowired
     private SimpleJobService simpleJobService;
 
+    public static final String NAME = "SIMPLE_JOB";
 
-    public SimpleJob( ) {
+    public SimpleJob() {
 
     }
 
